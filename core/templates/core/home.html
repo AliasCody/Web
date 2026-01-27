@@ -1,36 +1,75 @@
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'core/style.css' %}?v=1.1">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cody | Backend Engineer</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <title>Cody Wang | Backend-Oriented Engineer</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Cody (Wang, Yu-Cheng)</h1>
-            <h2>Aspiring Backend / Software Engineer</h2>
-        </header>
 
-        <section class="about">
-            <p>Civil Engineering graduate. Former TSMC site engineer.</p>
-            <p>Currently learning Django & Python. Working Holiday in Australia.</p>
-        </section>
+<div class="container">
 
-        <section class="skills">
-            <h3>Skills / Interests</h3>
-            <ul>
-                <li>Python / Django</li>
-                <li>Data Structures / Algorithms (APCS Intermediate)</li>
-                <li>Volleyball / Outdoor work</li>
-            </ul>
-        </section>
+    <section class="hero">
+        
+        <div class="photo-frame">
+            <img class="profile-photo" src="{% static 'core/images/profile.jpg' %}" alt="Cody Wang">
+        </div>
 
-        <footer>
-            <p>Contact: your-email@example.com</p>
-        </footer>
-    </div>
+        <h1>Cody Wang</h1>
+        <p class="subtitle">
+            Aspiring Backend Engineer · Django / Python<br>
+            Outdoor-oriented · Currently in Australia (WHV)
+        </p>
+    </section>
+
+    <section>
+        <h2>About</h2>
+        <p>
+            I hold a master’s degree in Civil Engineering and previously worked on TSMC construction projects.
+            During my studies, I developed a strong interest in programming and backend systems.
+        </p>
+        <p>
+            Currently on a working holiday in Australia, continuing my backend studies during off-work time.
+            Outside of work and study, I regularly participate in sports and team activities.
+        </p>
+        <p>
+            With a strong preference for volleyball.
+        </p>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+
+        <h3>Backend</h3>
+        <ul>
+            <li>Python</li>
+            <li>Django (learning & building personal projects)</li>
+        </ul>
+
+        <h3>Problem Solving</h3>
+        <ul>
+            <li>LeetCode (Easy–Medium, Python)</li>
+        </ul>
+
+        <h3>Credentials</h3>
+        <ul>
+            <li>APCS (Reading Lv.4, Practical Lv.3)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Links</h2>
+        <ul>
+            <li><a href="https://github.com/AliasCody" target="_blank">GitHub</a></li>
+            <li><a href="https://leetcode.com/AliasCody" target="_blank">LeetCode</a></li>
+            <li><a href="mailto:musoudeus@gmail.com">Email</a></li>
+        </ul>
+    </section>
+
+</div>
+
 </body>
 </html>
