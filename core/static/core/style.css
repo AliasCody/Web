@@ -91,23 +91,24 @@ a:hover {
 
 .hero {
     position: relative;
-    padding: 40px 20px;     /* 上下 40px，左右 20px */
+    padding: 40px 40px;     /* 上下 40px，左右 20px */
     background-color: #fff; /* 白卡片底 */
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 /* ---------- 圖片框 ---------- */
 .photo-frame {
-    width: 120px;           /* 框的寬 */
-    height: 80px;           /* 框的高 → 長方形 */
-    overflow: hidden;       /* 超出框的部分隱藏 */
     position: absolute;
-    top: 20px;
-    right: 20px;
-    border-radius: 8px;     /* 可選：框圓角 */
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2); /* 可選：框陰影 */
+    top: 32px;
+    right: 32px;
+
+    width: 288px;
+    height: 192px;
+
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #eee;
 }
 
 /* ---------- 裡面的圖片 ---------- */
