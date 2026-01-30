@@ -55,15 +55,46 @@ All it does is make your program start a little faster.</span>
 # About `asgi.py`
 <span style='font-size:24px;'>ASGI is abbraviate of **Asynchronous Server Gateway Interface**.</span>
 
-<span style='font-size:24px;'>This is a file generate automatically by django.In this project,we don't need this file.(2026/1/28)</span>
+<span style='font-size:24px;'>This is a file generate automatically by django.</span>
 
+<span style='font-size:24px;'>In this project,we don't need this file.(2026/1/28)</span>
 
 # About `settings.py`
+
+<span style='font-size:24px;font-family:Segoe Print'>The entry point of this project: `os.environ.setdefault('DJANGO_SETTINGS_MODULE,'config.settings')`which is part of code in `manage.py`.</span>
+
 
 # About `urls.py`
 
 
+<span style='font-size:24px;font-family:Segoe Print'>In this setup,`urls.py` acts as the Root URLconf,which is responsible for routing requests to their corresponding subsystems.</span>
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('core.urls')),
+]
+
+STATIC_URL = '/static/'
+```
+
+<span style='font-size:24px;'>For example,when you typing `https://yoursite.com/blog/`</span>
+
+<span style='font-size:24px;font-family:Segoe Print'>1. `urls.py` receive the request,which will be forwarded to `core/urls.py` because the path match the empty string (""or other string **not** `admin/`).</span>
+
+<span style='font-size:24px;font-family:Segoe Print'>2. `core/urls.py` than handles the request ...</span>
+
+
+
+
+
 # About `wsgi.py`
+
+
+
 <span style='font-size:24px;font-family:Segoe Print'>WSGI means **Web Server Gateway Interface**</span>
 
 
@@ -75,3 +106,5 @@ All it does is make your program start a little faster.</span>
 - [What is __init__.py for?](https://stackoverflow.com/questions/448271/what-is-init-py-for)
 - [5.2. Packages (ref from ch5.2.1 to ch5.2.2)](https://docs.python.org/3/reference/import.html#regular-packages)
 - [PEP 3333 – Python Web Server Gateway Interface v1.0.1 (Description about wsgi.py)](https://peps.python.org/pep-3333/)
+- [認識Django資料庫設定及settings.py](https://ithelp.ithome.com.tw/m/articles/10234292)
+- [第一章 Django简单步骤记录 — 启动第一个Django](https://blog.csdn.net/qq_40494873/article/details/118465177)
