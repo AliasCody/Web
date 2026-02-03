@@ -1,11 +1,16 @@
 from pathlib import Path
-
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-e4&^om@dlo1v2h_82oa&k@8=r0v0ey_k-84wf!dt8))!@9^jhh'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import os
+from pathlib import Path
+
+# 先嘗試抓環境變數，抓不到再用一個無關緊要的字串，並確保 DEBUG 是關閉的
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'develop-mode-only-key')
+
+# 記得把 DEBUG 設為根據環境變數決定（Render 上通常是 False）
+DEBUG = os.environ.get('RENDER', 'False') == 'False' # 這是假設在 Render 上預設關閉
 
 ALLOWED_HOSTS = ["*"]
 

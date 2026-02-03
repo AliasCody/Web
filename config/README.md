@@ -1,3 +1,22 @@
+<span style='font-size:24px;'>Everythings here start from this command:</span>
+```bash
+django-admin startproject Personal_Web
+```
+
+<span style='font-size:24px;'>This command helps you generate the structure below:</span>
+
+```bash
+Personal_Web/
+│
+└─ config/
+   ├─ manage.py
+   └─ config/
+      ├─ settings.py
+      ├─ urls.py
+      ├─ asgi.py
+      └─ wsgi.py
+```
+---
 <span style='font-size:24px;'>File structure</span>
 ```bash
 config/
