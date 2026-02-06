@@ -68,13 +68,16 @@
             <li><a href="mailto:musoudeus@gmail.com">Email</a></li>
         </ul>
     </section>
-
+    
+    <section>
+        <h2>留言板</h2>
+        <div id="comments"></div> <!-- 這塊div是留言要插入的地方 -->
+        <script src="{% static 'js/comments.js' %}"></script>
+    </section>
 </div>
 
 
-<h2>留言板</h2>
-<div id="comments"></div> <!-- 這塊div是留言要插入的地方 -->
-<script src="{% static 'js/comments.js'}"></script>
+
 
 </body>
 </html>
