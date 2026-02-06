@@ -3,9 +3,6 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import os
-from pathlib import Path
-
 # 先嘗試抓環境變數，抓不到再用一個無關緊要的字串，並確保 DEBUG 是關閉的
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'develop-mode-only-key')
 
@@ -105,4 +102,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
+'''
+    Telling Django how to store and manage files
+    "whitenoise.storage.CompressedManifestStaticFilesStorage" will help you compressed and manifest(快取管理，幫忙上一串亂碼，這樣你更新內容的時候使用者瀏覽器會直接發現並讀取新的檔案)
+'''
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
