@@ -1,29 +1,61 @@
-// addEvenetListener("DOMContentLoaded",...) 等待DOM建好
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. 在 DOM 裡面找到留言容器
-  // const commentsBox = document.getElementById("comments");
+  const container = document.getElementById("comments-list");
+  const form = document.getElementById("comment-form");
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 
-  // 2. 生出一塊 div  ( div 還在暫存器裡，未寫進 DOM )
-  // const commentDiv = document.createElement("div");
+  // 載入留言
+  function loadComments() {
+    fetch("/api/comments/")
+      .then(res => res.json())
+      .then(data => {
+        container.innerHTML = "";
+        data.comments.forEach(item => {
+          const div = document.createElement("div");
+          div.classList.add("comment-item");
+          div.innerHTML = `
+            <strong>${item.author}</strong>: ${item.content} 
+            <button class="delete-btn" data-id="${item.id}">刪除</button>
+          `;
+          container.appendChild(div);
 
-  // 3. 在這塊 div 內塞東西
-  // commentDiv.innerText = "測試留言：Hello DOM";
+          // 刪除留言
+          div.querySelector(".delete-btn").addEventListener("click", () => {
+            fetch("/api/comments/", {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+              },
+              body: JSON.stringify({ id: item.id })
+            }).then(res => { if(res.ok) div.remove(); });
+          });
+        });
+      });
+  }
 
-  // 4. 一次將處理好的 div 塞進 DOM
-  // commentsBox.appendChild(commentDiv);
+  loadComments();
 
+  // 新增留言
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = {
+      author: formData.get("author"),
+      content: formData.get("content")
+    };
 
-
-  fetch("/api/comments/")
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("comment-list");
-
-    data.comments.forEach(item => {
-      const div = document.createElement("div");
-      div.innerHTML = `<strong>${item.author}</strong>: ${item.content}`;
-      container.appendChild(div);
+    fetch("/api/comments/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(() => {
+      form.reset();
+      loadComments();
     });
   });
-
 });

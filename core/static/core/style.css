@@ -119,5 +119,10 @@ a:hover {
 }
 
 
-
+#comments-list { margin-top: 10px; }
+.comment-item { border-bottom: 1px solid #ccc; padding: 6px 0; }
+.delete-btn { background-color: #e74c3c; color: white; border: none; padding: 2px 6px; margin-left: 8px; cursor: pointer; }
+#comment-form { margin-top: 10px; }
+#comment-form input { padding: 4px; margin-right: 4px; }
+#submit-btn { padding: 4px 8px; cursor: pointer; }
 

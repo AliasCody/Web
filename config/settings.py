@@ -3,13 +3,15 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# 先嘗試抓環境變數，抓不到再用一個無關緊要的字串，並確保 DEBUG 是關閉的
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'develop-mode-only-key')
+# 🔑 不要直接寫在程式裡，改用環境變數
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback_key_for_dev_only")
 
 # 記得把 DEBUG 設為根據環境變數決定（Render 上通常是 False）
 DEBUG = os.environ.get('RENDER', 'False') == 'False' # 這是假設在 Render 上預設關閉
 
-ALLOWED_HOSTS = ["*"]
+
+# 允許本機測試 + Render 部署的域名
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "web-kl2u.onrender.com"]
 
 
 # Application definition
@@ -42,13 +44,12 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+        'OPTIONS': {'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+        ]},
     },
 ]
 
@@ -88,12 +89,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hant'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
