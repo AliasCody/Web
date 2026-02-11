@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # 記得把 DEBUG 設為根據環境變數決定（Render 上通常是 False）
-DEBUG = os.environ.get("DEBUG")
+DEBUG = os.environ.get("DEBUG") == "False"
 
 
 # 允許本機測試 + Render 部署的域名
@@ -72,12 +72,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
