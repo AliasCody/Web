@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback_key_for_dev_only")
 
 # 記得把 DEBUG 設為根據環境變數決定（Render 上通常是 False）
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = os.environ.get("DEBUG", "False") == "False"
 
 
 # 允許本機測試 + Render 部署的域名
@@ -101,7 +101,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 '''
     Telling Django how to store and manage files
