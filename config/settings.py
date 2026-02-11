@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback_key_for_dev_only")
 
 # 記得把 DEBUG 設為根據環境變數決定（Render 上通常是 False）
-DEBUG = os.environ.get('RENDER', 'False') == 'False' # 這是假設在 Render 上預設關閉
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 
 # 允許本機測試 + Render 部署的域名
