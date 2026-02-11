@@ -1,18 +1,31 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # 🔑 不要直接寫在程式裡，改用環境變數
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback_key_for_dev_only")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # 記得把 DEBUG 設為根據環境變數決定（Render 上通常是 False）
-DEBUG = os.environ.get("DEBUG", "False") == "False"
+DEBUG = os.environ.get("DEBUG")
 
 
 # 允許本機測試 + Render 部署的域名
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "web-kl2u.onrender.com"]
+load_dotenv(BASE_DIR / ".env")  # 這行會載入 .env
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME", "my_local_db"),
+        "USER": os.getenv("DB_USER", "my_user"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "cody"),
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "PORT": os.getenv("DB_PORT", "5432"),
+    }
+}
 
 # Application definition
 
