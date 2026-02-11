@@ -17,15 +17,11 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost", "web-kl2u.onrender.com"]
 load_dotenv(BASE_DIR / ".env")  # 這行會載入 .env
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME", "my_local_db"),
-        "USER": os.getenv("DB_USER", "my_user"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "cody"),
-        "HOST": os.getenv("DB_HOST", "localhost"),
-        "PORT": os.getenv("DB_PORT", "5432"),
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
 }
+
 
 # Application definition
 
