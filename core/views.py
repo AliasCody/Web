@@ -4,10 +4,11 @@ from django.views.decorators.csrf import csrf_exempt
 from core.models import Comment
 import json
 
+# render the main page
 def home(request):
     return render(request, 'core/home.html')
 
-# API：取得 / 新增 / 刪除留言
+# handle the api of messege (get list,create messege,delete the messege)
 def comments_api(request):
     if request.method == "GET":
         # 取得留言，倒序排列

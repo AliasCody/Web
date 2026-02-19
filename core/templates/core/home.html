@@ -1,98 +1,121 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'core/style.css' %}">
+<link rel="stylesheet" href="{% static 'core/style.css' %}?v=1.2">
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token }}">
     <meta charset="UTF-8">
     <title>Cody Wang | Backend-Oriented Engineer</title>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <section class="hero">
-        
-        <div class="photo-frame">
-            <img class="profile-photo" src="{% static 'core/images/profile.jpg' %}" alt="Cody Wang">
-        </div>
+        <section class="hero">
 
-        <h1>Cody Wang</h1>
-        <p class="subtitle">
-            Aspiring Backend Engineer · Django / Python<br>
-            Outdoor-oriented · Currently in Australia (WHV)
-        </p>
-    </section>
+            <div class="photo-frame">
+                <img class="profile-photo" src="{% static 'core/images/profile.jpg' %}" alt="Cody Wang">
+            </div>
 
-    <section>
-        <h2>About</h2>
-        <p>
-            I hold a master’s degree in Civil Engineering and previously worked on construction projects.
-            During my studies, I developed a strong interest in programming and fronted/backend systems.
-        </p>
-        <p>
-            Currently on a working holiday in Australia, continuing my backend studies during off-work time.
-            Outside of work and study, I regularly participate in sports and team activities.
-        </p>
-        <p>
-            With a strong preference for volleyball.
-        </p>
-    </section>
+            <h1>Cody Wang</h1>
+            <p class="subtitle">
+                Aspiring Backend Engineer · Django / Python<br>
+                Outdoor-oriented · Currently in Australia (WHV)
+            </p>
+        </section>
 
-    <section>
-        <h2>Skills</h2>
+        <!-- Music Card -->
+        <section class="music-card">
+            <div class="music-cover">
+                <img id="track-cover" src="https://img.youtube.com/vi/jfKfPfyJRdk/maxresdefault.jpg" alt="Music Cover">
+            </div>
+            <div class="music-info">
+                <h3 id="track-title"></h3>
+                <p id="track-artist"></p>
+            </div>
+            <button id="play-btn" class="play-button">▶</button>
+            <div class="playlist-section">
+                <ul id="playlist-items">
+                </ul>
+            </div>
 
-        <h3>Backend</h3>
-        <ul>
-            <li>Python</li>
-            <li>Django (learning & building personal projects)</li>
-        </ul>
+            <div id="youtube-player" style="display:none;"></div>
+        </section>
 
-        <h3>Problem Solving</h3>
-        <ul>
-            <li>LeetCode (Easy–Medium, Python)</li>
-        </ul>
+        <section>
+            <h2>About</h2>
+            <p>
+                I hold a master’s degree in Civil Engineering and previously worked on construction projects.
+                During my studies, I developed a strong interest in programming and fronted/backend systems.
+            </p>
+            <p>
+                Currently on a working holiday in Australia, continuing my backend studies during off-work time.
+                Outside of work and study, I regularly participate in sports and team activities.
+            </p>
+            <p>
+                With a strong preference for volleyball.
+            </p>
+        </section>
 
-        <h3>Credentials</h3>
-        <ul>
-            <li>APCS (Reading Lv.4, Practical Lv.3)</li>
-        </ul>
-    </section>
+        <section>
+            <h2>Skills</h2>
 
-    <section>
-        <h2>Links</h2>
-        <ul>
-            <li><a href="https://github.com/AliasCody" target="_blank">GitHub</a></li>
-            <li><a href="https://leetcode.com/AliasCody" target="_blank">LeetCode</a></li>
-            <li><a href="mailto:musoudeus@gmail.com">Email</a></li>
-        </ul>
-    </section>
-    
-    <section>
-        <h2>Message Board</h2>
+            <h3>Backend</h3>
+            <ul>
+                <li>Python</li>
+                <li>Django (learning & building personal projects)</li>
+            </ul>
 
-        <!-- 留言列表 -->
-        <div id="comments-list"></div>
+            <h3>Problem Solving</h3>
+            <ul>
+                <li>LeetCode (Easy–Medium, Python)</li>
+            </ul>
 
-        <!-- 留言表單 -->
-        <form id="comment-form">
-            <input type="text" name="author" placeholder="名字">
-            <input type="text" name="content" placeholder="留言內容">
-            <button type="submit">送出</button>
-        </form>
+            <h3>Credentials</h3>
+            <ul>
+                <li>APCS (Reading Lv.4, Practical Lv.3)</li>
+            </ul>
+        </section>
 
-        <script src="{% static 'js/comments.js' %}"></script>
-    </section>
+        <section>
+            <h2>Links</h2>
+            <ul>
+                <li><a href="https://github.com/AliasCody" target="_blank">GitHub</a></li>
+                <li><a href="https://leetcode.com/AliasCody" target="_blank">LeetCode</a></li>
+                <li><a href="mailto:musoudeus@gmail.com">Email</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Message Board</h2>
+
+            <!-- 留言列表 -->
+            <div id="comments-list"></div>
+
+            <!-- 留言表單 -->
+            <form id="comment-form">
+                <input type="text" name="author" placeholder="名字">
+                <input type="text" name="content" placeholder="留言內容">
+                <button type="submit">送出</button>
+            </form>
+
+            <script src="{% static 'js/comments.js' %}"></script>
+        </section>
 
 
 
 
-</div>
+    </div>
 
 
 
 
+
+    <script src="{% static 'js/music-player.js' %}?v=1.1"></script>
 </body>
+
 </html>

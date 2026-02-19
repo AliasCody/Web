@@ -1,128 +1,326 @@
-/* ---------- Base ---------- */
+/* ---------- Design System (Dark Glass Theme) ---------- */
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --bg-dark: #0f172a;
+    /* Slate 900 */
+    --bg-card: rgba(30, 41, 59, 0.85);
+    /* Dark Slate with transparency */
+    --text-main: #f8fafc;
+    /* Slate 50 */
+    --text-muted: #94a3b8;
+    /* Slate 400 */
+    --accent: #a855f7;
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --radius: 16px;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                 Roboto, "Cascadia Mono", Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #222;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    background-image: url('background-image/bg.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: var(--text-main);
     line-height: 1.6;
+    min-height: 100vh;
 }
 
-/* ---------- Layout ---------- */
+/* Background Overlay for Contrast */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.5) 100%);
+    z-index: -1;
+}
 
 .container {
-    max-width: 900px;       /* 限制內容寬度，避免跑太寬 */
-    margin: 40px auto;      /* 上下間距 40px，水平置中 */
-    padding: 20px;          /* 內距，避免文字貼邊 */
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 24px;
 }
 
-/* ---------- Hero ---------- */
-
-.hero {
-    margin-bottom: 48px;
-}
-
-.hero h1 {
-    font-size: 2.2rem;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    font-size: 1rem;
-    color: #555;
-}
-
-/* ---------- Sections ---------- */
-
+/* ---------- Component: Section (Glass Card) ---------- */
 section {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Typography ---------- */
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    background: linear-gradient(to right, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
 }
 
 h2 {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 4px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+h2::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--border-glass), transparent);
 }
 
 h3 {
-    font-size: 1rem;
-    margin-top: 20px;
-    margin-bottom: 6px;
-    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--primary);
 }
-
-/* ---------- Text ---------- */
 
 p {
-    margin-bottom: 12px;
-    color: #333;
+    margin-bottom: 16px;
+    color: var(--text-muted);
 }
 
-/* ---------- Lists ---------- */
+.subtitle {
+    font-size: 1.125rem;
+    color: var(--text-muted) !important;
+}
 
+/* ---------- Photo Frame ---------- */
+.photo-frame {
+    float: right;
+    width: 160px;
+    height: 160px;
+    margin: 0 0 20px 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--border-glass);
+    box-shadow: var(--shadow);
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- Lists & Links ---------- */
 ul {
     padding-left: 20px;
+    list-style: none;
 }
 
 li {
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 20px;
 }
 
-/* ---------- Links ---------- */
+li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
 
 a {
-    color: #005fcc;
+    color: var(--primary);
     text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
 }
 
 a:hover {
+    color: #fff;
     text-decoration: underline;
 }
 
+/* ---------- Component: Music Card (Dynamic Island) ---------- */
+.music-card {
+    position: fixed;
+    left: 24px;
+    top: 24px;
+    z-index: 1000;
 
-
-
-.hero {
-    position: relative;
-    padding: 40px 40px;     /* 上下 40px，左右 20px */
-    background-color: #fff; /* 白卡片底 */
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-/* ---------- 圖片框 ---------- */
-.photo-frame {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-
-    width: 288px;
-    height: 192px;
-
+    width: 64px;
+    height: 64px;
+    padding: 0;
     overflow: hidden;
-    border-radius: 12px;
-    background-color: #eee;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-glass);
+    border-radius: 32px;
+    /* Perfect circle */
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ---------- 裡面的圖片 ---------- */
-.photo-frame img {
+.music-card:hover {
+    width: 320px;
+    height: 500px;
+    border-radius: 20px;
+    padding: 24px;
+    gap: 20px;
+}
+
+.music-cover {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin: 0;
+    float: none;
+    box-shadow: none;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.music-card:hover .music-cover {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+}
+
+.music-cover img {
     width: 100%;
     height: 100%;
-    object-fit: cover;      /* 保持比例並填滿框 */
+    object-fit: cover;
 }
 
+.music-info {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
 
-#comments-list { margin-top: 10px; }
-.comment-item { border-bottom: 1px solid #ccc; padding: 6px 0; }
-.delete-btn { background-color: #e74c3c; color: white; border: none; padding: 2px 6px; margin-left: 8px; cursor: pointer; }
-#comment-form { margin-top: 10px; }
-#comment-form input { padding: 4px; margin-right: 4px; }
-#submit-btn { padding: 4px 8px; cursor: pointer; }
+.music-card:hover .music-info {
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+}
 
+.music-info h3 {
+    margin: 0 0 4px 0;
+    color: var(--text-main);
+}
+
+.music-info p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.play-button {
+    position: absolute;
+    right: 20px;
+    top: 155px;
+    /* Aligned with cover in hover mode */
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease 0.2s;
+
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.music-card:hover .play-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.playlist-section {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease 0.3s;
+}
+
+.music-card:hover .playlist-section {
+    opacity: 1;
+    height: auto;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 16px;
+    overflow-y: auto;
+}
+
+/* Ensure JS generated items remain beautiful */
+#playlist-items {
+    padding: 0;
+    margin: 0;
+}
+
+/* ---------- Message Board ---------- */
+#comment-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+#comment-form input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+    outline: none;
+}
+
+#comment-form button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
